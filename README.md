@@ -9,8 +9,9 @@ In the Terminal of your choice type in the following two commands to execute it!
 
 chmod +x Kernelupdate // changes permission to make it executable on your machine
 
-After execution and reboot check your kernel with "uname -a"
 ./Kernelupdate  // Executes the file
+
+After execution and reboot check your kernel with "uname -a"
 
 # For NVIDIA-Users
 You won't be able to boot properly after installing the new Kernel. This is because your current Nvidia-Driver was compiled with the old kernel and its not loaded with the new Kernel.
