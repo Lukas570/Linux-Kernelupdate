@@ -23,8 +23,9 @@ No worry this is temporarily and only puts your machine in Runlevel 3 in this se
 
 Now find your previously downloaded file NVIDIA....run and perform a chmod +x on it. Execute it afterwards with "sudo ./NVIDIA....run 
 
-If everything worked just reboot after the installation and everything works as before.
-         
+If everything worked just reboot after the installation and everything should work as before.
+
+In case the NVIDIA-Driver cant compile and interrupts with error messages remember the missing packages and boot in runlevel 2 it works just the same as with 3 just replace the 3 with a 2 after "... quiet 2" as a boot parameter!
 
 # Further information 
 
