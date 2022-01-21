@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Coded by Lukas570
+
 # Regular Colors
 BLACK='\033[0;30m'        # Black
 RED='\033[0;31m'          # Red
