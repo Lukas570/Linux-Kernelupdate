@@ -28,6 +28,11 @@ If everything worked just reboot after the installation and everything should wo
 
 In case the NVIDIA-Driver cant compile and interrupts with error messages remember the missing packages and boot in runlevel 2 it works just the same as with 3 just replace the 3 with a 2 after "... quiet 2" as a boot parameter!
 
+
+# Benchmark
+
+Benchmarking feature will come soon... 
+
 # Further information 
 
 I tested the Script on multiple Debian-based Distros (Debian, Kali etc...).
