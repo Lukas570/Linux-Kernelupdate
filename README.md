@@ -6,6 +6,8 @@ Easy to use and foolproof way to update your Linux-Kernel!
 How to use:
 
 chmod +x Kernelupdate // changes permission to make it executable on your machine
+
+
 ./Kernelupdate  // Executes the file
 
 I tested the Script on multiple Debian-based Distros (Debian, Kali etc...).
