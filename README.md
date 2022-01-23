@@ -29,9 +29,15 @@ If everything worked just reboot after the installation and everything should wo
 In case the NVIDIA-Driver cant compile and interrupts with error messages remember the missing packages and boot in runlevel 2 it works just the same as with 3 just replace the 3 with a 2 after "... quiet 2" as a boot parameter!
 
 
-# Benchmark
+# Coming Soon
 
-Benchmarking feature will come soon... 
+Verifying the downloaded Kernel with PGP (thanks to Konstantin from Linuxfoundation for the suggestion)
+
+Fixing the Ubuntu compiling problem.
+
+Allow users to make custom settings in the Config-File and before the Kernel compilation starts (Advanced Mode)
+
+Benchmarking feature
 
 # Further information 
 
