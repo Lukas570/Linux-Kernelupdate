@@ -5,6 +5,8 @@ Easy to use and foolproof way to update your Linux-Kernel!
 
 Added PGP-Verification process!
 
+If you have an older version of the script without the PGP-verification process it's highly advised to upgrade to the newest version!
+
 # How to use:
 
 In the Terminal of your choice type in the following two commands to execute it!
