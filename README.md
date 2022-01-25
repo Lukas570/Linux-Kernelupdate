@@ -33,7 +33,7 @@ In case the NVIDIA-Driver cant compile and interrupts with error messages rememb
 
 # Coming Soon
 
-Verifying the downloaded Kernel with PGP (thanks to Konstantin from Linuxfoundation for the suggestion) ✅
+✅ 🟢 Verifying the downloaded Kernel with PGP (thanks to Konstantin from Linuxfoundation for the suggestion) 🟢 ✅
 
 Fixing the Ubuntu compiling problem.
 
