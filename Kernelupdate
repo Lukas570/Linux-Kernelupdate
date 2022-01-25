@@ -169,8 +169,9 @@ if [ -z "$Download" ]
         | grep -c -E '^\[GNUPG:\] (GOODSIG|VALIDSIG)')
             if [[ ${COUNT} -lt 2 ]]; then
             echo "$RED FAILED to verify the tarball!"
-   
-                else
+   		exit 1
+		
+         else
                 
                 echo -e "$GREEN PGP-Signature verification successfull!!!"
                 rm -r $GNUPGHOME
