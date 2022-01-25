@@ -158,7 +158,7 @@ if [ -z "$Download" ]
                               wget $PGP
                               gpg2 --locate-keys torvalds@kernel.org gregkh@kernel.org
                               clear
-			      echo -e "$CYAN Verifying Signature of the downloaded Kernel!$WHITE\n"
+			      echo -e "$CYAN Verifying Signature of the downloaded Kernel!$WHITE"
 			      $GPGBIN --batch --export $DEVKEYS $SHAKEYS > $USEKEYRING
                              DEVKEYRING=$dload_dir/devkeyring.gpg
                             ${GPGBIN} --batch \
