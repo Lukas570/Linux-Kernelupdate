@@ -157,14 +157,13 @@ if [ -z "$Download" ]
                               clear
                               echo -e "$CYAN Verifying Signature of the downloaded Kernel!$WHITE\n"
                               wget $PGP
-                              $GPGBIN --batch --export $DEVKEYS $SHAKEYS > $USEKEYRING
-                             
+                              gpg2 --locate-keys torvalds@kernel.org gregkh@kernel.org
+                              clear
+			      $GPGBIN --batch --export $DEVKEYS $SHAKEYS > $USEKEYRING
                              DEVKEYRING=$dload_dir/devkeyring.gpg
                             ${GPGBIN} --batch \
                             --no-default-keyring --keyring ${USEKEYRING} \
                             --export ${DEVKEYS} > ${DEVKEYRING}
-            
-            
                             COUNT=$(xz -cd ${ARCHIV} \
         | $GPGVBIN --keyring=$DEVKEYRING --status-fd=1 $SIGN - \
         | grep -c -E '^\[GNUPG:\] (GOODSIG|VALIDSIG)')
