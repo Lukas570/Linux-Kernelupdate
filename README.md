@@ -3,6 +3,8 @@ Script to install the latest Kernel from Kernel.org
 
 Easy to use and foolproof way to update your Linux-Kernel!
 
+Added PGP-Verification process!
+
 # How to use:
 
 In the Terminal of your choice type in the following two commands to execute it!
@@ -31,7 +33,7 @@ In case the NVIDIA-Driver cant compile and interrupts with error messages rememb
 
 # Coming Soon
 
-Verifying the downloaded Kernel with PGP (thanks to Konstantin from Linuxfoundation for the suggestion)
+Verifying the downloaded Kernel with PGP (thanks to Konstantin from Linuxfoundation for the suggestion) ✅
 
 Fixing the Ubuntu compiling problem.
 
