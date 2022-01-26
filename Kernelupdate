@@ -346,7 +346,7 @@ ls ../*.deb | grep image
 echo -e -n "$CYAN Should I install the compiled packages?$WHITE(y/n)"
 read COMPILE
 
-if [ COMPILE = y ]
+if [ $COMPILE = y ]
 			
 			then
 			
