@@ -368,19 +368,16 @@ if [ COMPILE = y ]
 						clear
 						echo -e "$CYAN You have to reboot in order to boot from the new kernel!"
 						sleep 3
+						exit 1
 				fi
 
-				break
-				;;
+			
 
         else
 			
 			echo -e "$RED Leaving script!"
 			sleep 3
-				exit;;
-
-                        esac
-                done
+				exit 1
 
 fi
 
