@@ -370,17 +370,14 @@ if [ COMPILE = y ]
 						sleep 3
 				fi
 
-				break
-				;;
 
         else
 			
 			echo -e "$RED Leaving script!"
 			sleep 3
-				exit;;
+				exit 1
 
-                        esac
-                done
+                
 
 fi
 
