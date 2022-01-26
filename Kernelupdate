@@ -257,7 +257,7 @@ if [ $ADJUST = y ]
 fi
 
 
-sudo make clean
+
 
 clear
 
@@ -287,8 +287,9 @@ clear
  if [ $ADJUST = y ]
  
         then
-        
-        make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
+        sudo make clean
+       
+       make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
         
         else
     
@@ -305,7 +306,7 @@ sed -i 's/CONFIG_SYSTEM_TRUSTED_KEYS/#CONFIG_SYSTEM_TRUSTED_KEYS/g' .config
 echo -e "$GREEN Config-File patched successfully!$WHITE"
 sleep 3
 clear
-            
+            sudo make clean
             
             sudo yes "" | make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
 
@@ -317,6 +318,7 @@ sed -i 's/CONFIG_SYSTEM_TRUSTED_KEYS/#CONFIG_SYSTEM_TRUSTED_KEYS/g' .config
 echo -e "$GREEN Config-File patched successfully!$WHITE"
 sleep 3
 clear
+	    sudo make clean
 
             make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
 
