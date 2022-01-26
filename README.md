@@ -37,11 +37,11 @@ In case the NVIDIA-Driver cant compile and interrupts with error messages rememb
 
 # Coming Soon
 
-🟢 Verifying the downloaded Kernel with PGP (thanks to Konstantin from Linuxfoundation for the suggestion) 🟢 
+🟢 Verifying the downloaded Kernel with PGP (thanks to Konstantin from Linuxfoundation for the suggestion)
 
 Fixing the Ubuntu compiling problem.
 
-🟢 Allow users to make custom settings in the Config-File and before the Kernel compilation starts (Advanced Mode) 🟢
+🟢 Allow users to make custom settings in the Config-File and before the Kernel compilation starts (Advanced Mode)
 
 Benchmarking feature
 
