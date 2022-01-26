@@ -5,6 +5,8 @@ Easy to use and foolproof way to update your Linux-Kernel!
 
 Added PGP-Verification process!
 
+You can compile the Kernel now with a custom config-file (Advanced Mode)
+
 If you have an older version of the script without the PGP-verification process it's highly advised to upgrade to the newest version!
 
 # How to use:
@@ -39,7 +41,7 @@ In case the NVIDIA-Driver cant compile and interrupts with error messages rememb
 
 Fixing the Ubuntu compiling problem.
 
-Allow users to make custom settings in the Config-File and before the Kernel compilation starts (Advanced Mode)
+🟢 Allow users to make custom settings in the Config-File and before the Kernel compilation starts (Advanced Mode) 🟢
 
 Benchmarking feature
 
