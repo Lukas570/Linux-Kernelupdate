@@ -288,7 +288,7 @@ clear
  
         then
         
-        make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
+       sudo make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
         
         else
     
@@ -307,7 +307,7 @@ sleep 3
 clear
             
             
-            sudo yes "" | make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
+             yes "" | sudo make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
 
 else 
 
@@ -318,7 +318,7 @@ echo -e "$GREEN Config-File patched successfully!$WHITE"
 sleep 3
 clear
 
-            make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
+           sudo make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
 
 fi
 
