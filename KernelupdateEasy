@@ -1,0 +1,323 @@
+#!/bin/bash
+
+# Regular Colors
+BLACK='\033[0;30m'        # Black
+RED='\033[0;31m'          # Red
+GREEN='\033[0;32m'        # Green
+YELLOW='\033[0;33m'       # Yellow
+BLUE='\033[0;34m'         # Blue
+PURPLE='\033[0;35m'       # Purple
+CYAN='\033[0;36m'         # Cyan
+WHITE='\033[0;37m'        # White
+
+
+clear
+
+echo -e "$CYAN Updating repositories$WHITE"
+sleep 3
+sudo apt update
+
+echo -e "$CYAN Installing dependencies \n$WHITE"
+
+
+    dpkg -s build-essential libncurses5-dev fakeroot xz-utils libelf-dev bison bc libssl-dev flex rsync dwarves wget bzip2 gnupg2 gpgv2 &> /dev/null
+
+if [ $? -ne 0 ]
+
+        then
+            echo -e "$RED You are missing necessary packages!!!$WHITE"
+
+            echo -e "$CYAN Should I install the missing packages for you?$WHITE"
+
+            select yn in "Yes" "No";
+                do
+                        case $yn in
+                            Yes )   sudo apt-get update
+                                    sudo apt-get install build-essential libncurses5-dev fakeroot xz-utils libelf-dev bison bc libssl-dev flex rsync dwarves wget bzip2 gnupg2 gpgv2 -y
+            
+                                    echo -e "$GREEN All packages installed successfully!!!$WHITE"
+                                    break;;
+                                    
+                            No )    echo -e "$RED The script can't be executed without the necessary packages! Exiting...!$WHITE"
+
+                                    exit
+                                    ;;
+                        esac
+                done
+        else
+    
+            echo -e "$GREEN All necessary packages installed successfully!!!"
+fi
+
+sleep 3
+
+echo -e "$CYAN Creating kernel-folder! $WHITE"
+
+dload_dir=$HOME/kernel
+
+if [ -d "$dload_dir" ]
+
+    then
+    
+        echo -e "$RED $dload_dir Already exists!"
+        sudo rm -r ~/kernel
+        mkdir ~/kernel
+        echo -e "$GREEN New kernel-folder created successfully!$WHITE"
+
+    else
+        echo -e "$RED $dload_dir Doesn't exist yet. Creating it for you!$WHITE"
+        mkdir ~/kernel
+        echo -e "$GREEN $dload_dir Successfully created!$WHITE"
+
+
+fi
+
+
+
+
+WEBSITE="`wget -O - www.kernel.org | grep -A 120 'id=\"releases\"' | grep linux- | sed 's/\"/\n/g' |grep tar.xz`"
+
+
+
+echo -e "$CYAN Please choose the Kernel you want to install!$WHITE"
+
+
+if [ -z "$WEBSITE" ]
+
+        then
+                echo
+                echo -e "$RED Fetching of links wasn't possible. Check your internet-connection!!!$WHITE"
+                sleep 3
+                exit 1
+
+        else
+
+                select Download in $WEBSITE
+                do
+                        case $Download in
+                            $WEBSITE)
+                            break
+                            ;;
+                            
+                            *)
+                            break
+                            ;;
+                            
+                        esac
+                done
+
+fi
+
+
+
+
+
+ARCHIV="`echo $Download | sed 's/\//\n/g' |grep tar.xz`"
+
+
+PGP="`echo $Download | sed 's/.tar.xz/.tar.sign/g'`"
+
+SIGN="`echo $PGP | sed 's/\//\n/g' |grep tar.sign`"
+
+cp -r $HOME/.gnupg $HOME/kernel/
+
+GNUPGHOME="$HOME/kernel/.gnupg"
+
+DEVKEYS="torvalds@kernel.org gregkh@kernel.org"
+
+USEKEYRING="$dload_dir/keyring.gpg"
+
+GPGVBIN="/usr/bin/gpgv2"
+
+GPGBIN="/usr/bin/gpg2"
+
+if [ -z "$Download" ]
+
+
+    then
+
+        echo -e "$RED I couldn't find a kernel to install. Please try again!"
+        exit 1
+
+    else
+                
+        cd ~/kernel
+        wget $Download
+                              
+        wget $PGP
+        gpg2 --locate-keys torvalds@kernel.org gregkh@kernel.org
+                              
+        echo -e "$CYAN Verifying Signature of the downloaded Kernel!$WHITE"
+        $GPGBIN --batch --export $DEVKEYS $SHAKEYS > $USEKEYRING
+        DEVKEYRING=$dload_dir/devkeyring.gpg
+        ${GPGBIN}   --batch \
+                    --no-default-keyring --keyring ${USEKEYRING} \
+                    --export ${DEVKEYS} > ${DEVKEYRING}
+            
+            
+                    COUNT=$(xz -cd ${ARCHIV} \
+                            | $GPGVBIN --keyring=$DEVKEYRING --status-fd=1 $SIGN - \
+                            | grep -c -E '^\[GNUPG:\] (GOODSIG|VALIDSIG)')
+            
+            if [[ ${COUNT} -lt 2 ]] 
+            
+                then
+                    echo "$RED FAILED to verify the tarball!"
+                    exit 1
+            
+                else
+                
+                    echo -e "$GREEN PGP-Signature verification successfull!!!"
+                    rm -r $GNUPGHOME
+                    rm $USEKEYRING
+                    rm $SIGN
+                    rm $DEVKEYRING
+                
+            fi
+            
+            sleep 7
+            echo -e "$GREEN Download and verification of the Kernel was successfull!$WHITE\n"
+
+        
+            
+fi
+
+
+tar -xavf $ARCHIV
+rm $ARCHIV
+
+KERNEL=$HOME/kernel/*
+
+LINUX=$HOME/kernel/linux-*
+
+
+
+if [ -d "$LINUX" ]
+
+
+    then
+        echo -e "$RED I couldn't find a kernel in $WHITE $KERNEL $RED !\n"
+
+        echo -e "$CYAN Please try again!$WHITE"
+        sleep 3
+        exit 1
+        
+        
+    else
+                
+        echo -e "$CYAN Please choose the kernel you want to install!$WHITE"
+
+        select File in $KERNEL
+            do
+                case $File in
+                $KERNEL)
+                    break
+                    ;;
+                *)
+                    echo -e "$RED Invalid Value!$WHITE"
+                    ;;
+                esac
+        done
+fi
+
+echo -e "$CYAN Copying source-files to /usr/src!"
+
+sudo cp -r $File /usr/src/
+
+echo -e "$GREEN Copying done!"
+
+
+cd $File
+
+cp /boot/config*`uname -r` .config
+
+echo -e "$CYAN Patching Config-File"
+sleep 2
+sed -i 's/CONFIG_SYSTEM_TRUSTED_KEYS/#CONFIG_SYSTEM_TRUSTED_KEYS/g' .config
+echo -e "$GREEN Config-File patched successfully!$WHITE"
+sleep 3
+
+
+sudo make clean
+
+
+echo -e "$CYAN Starting makeprocess...!!!"
+
+
+USERTHREADS="`lscpu | grep -m1 'CPU(s):' | cut -f 2 -d ":" | awk '{$1=$1}1'`"
+
+
+sudo yes "" | make -j$USERTHREADS deb-pkg LOCALVERSION=-custom KDEB_PKGVERSION=$(make kernelversion)-1
+
+ 
+
+          
+           
+            
+
+echo -e "$CYAN Following packages have been compiled:$WHITE"
+
+IMAGE="`ls $HOME/kernel/ |grep .deb`"
+
+if [ -z "$IMAGE" ]
+    
+    then
+         
+        echo -e "$RED There was an issue within the compiling process. Maybe your .config file is broken?"
+        exit 1
+        
+fi
+
+sleep 3
+
+KERFOLDER=$HOME/kernel
+
+ls ../*.deb | grep image
+
+
+           
+
+       
+echo -e -n "$CYAN Should I install the compiled packages?$WHITE(y/n)"
+read COMPILE
+
+if [ $COMPILE = y ]
+        
+        then
+        
+            sudo dpkg -i ../linux-image*custom_*.deb ../linux-headers*.deb
+                
+            echo -e "$CYAN Deleting kernel-folder!"
+            sudo rm -r $HOME/kernel
+            echo -e "$GREEN $KERFOLDER successfully deleted!"
+            sleep 3
+                
+            echo -e "$CYAN Installation of kernelpackages successfull!$WHITE \n"
+
+            echo -e -n "$CYAN You want to restart your machine?$WHITE(y/n)"
+            read RESTART
+            
+            if [ $RESTART = y ]
+                then
+                
+                    sudo reboot
+                
+                else
+                    
+                    echo -e "$CYAN You have to reboot in order to boot from the new kernel!"
+                    sleep 3
+                    exit 1
+                    
+            fi
+
+        
+
+        else
+        
+            echo -e "$RED Leaving script!"
+            sleep 3
+            exit 1
+
+fi
+
+
