@@ -361,7 +361,7 @@ if [ $COMPILE = y ]
 
 				echo -e -n "$CYAN You want to restart your machine?$WHITE(y/n)"
 				read RESTART
-				if [$RESTART = y]
+				if [$RESTART = y ]
 					then
 						sudo reboot
 					else
