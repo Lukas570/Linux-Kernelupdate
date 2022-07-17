@@ -1,8 +1,3 @@
-# Added KernelupdateEasy
-If you don't want to adjust the Kernel-Settings or just do a quick Kernelupdate without lots of (complicated) prompts just execute the Easy script.
-
-If you are an advanced user I would recommend using the normal script ;)
-
 # Kernelupdate
 Script to install the latest Kernel from Kernel.org
 
@@ -20,11 +15,7 @@ In the Terminal of your choice type in the following two commands to execute it!
 
 chmod +x Kernelupdate // changes permission to make it executable on your machine
 
-chmod +x KernelupdaetEasy // makes the easy script executable
-
 ./Kernelupdate  // Executes the file
-
-./KernelupdateEasy //Executes the easy script
 
 After execution and reboot check your kernel with "uname -a"
 
