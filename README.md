@@ -20,20 +20,9 @@ chmod +x Kernelupdate // changes permission to make it executable on your machin
 After execution and reboot check your kernel with "uname -a"
 
 # For NVIDIA-Users
-You won't be able to boot properly after installing the new Kernel. This is because your current Nvidia-Driver was compiled with the old kernel and its not loaded with the new Kernel.
+Please don't reboot after the Kernel-Update is done. Get the following script first!
 
-If you still want to upgrade your kernel it's not a major problem, I am an NVIDIA-User by myself (unfortunately).
-
-You have to download the newest NVIDIA-Driver for your system on their official website https://www.nvidia.de/Download/index.aspx After that you have to boot in the so called "Runlevel 3" to achieve that you have to press e in your Grub-Menu in order to see the boot parameters for your Kernel. Assuming you have never ever played with these settings (if you did you probably know what you are doing!) you have to find the line with "linux = "... quiet" and after quiet enter a 3 "linux = "... quiet 3".
-
-No worry this is temporarily and only puts your machine in Runlevel 3 in this session. In runlevel 3 almost no drivers will be loaded so you have no internet connection and no graphics driver being loaded. 
-
-Now find your previously downloaded file NVIDIA....run and perform a chmod +x on it. Execute it afterwards with "sudo ./NVIDIA....run 
-
-If everything worked just reboot after the installation and everything should work as before.
-
-In case the NVIDIA-Driver cant compile and interrupts with error messages remember the missing packages and boot in runlevel 2 it works just the same as with 3 just replace the 3 with a 2 after "... quiet 2" as a boot parameter!
-
+Check out my Nvidia-Debian script. It downloads and installs the newest Nvidia-Driver https://github.com/Lukas570/Nvidia-Debian
 
 # Coming Soon
 
