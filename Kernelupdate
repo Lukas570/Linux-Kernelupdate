@@ -295,7 +295,7 @@ if [ $COMPILE = y ]
                 
             echo -e "$CYAN Installation of kernelpackages successfull!$WHITE \n"
 
-            echo -e -n "$CYAN You want to restart your machine?$WHITE(y/n)"
+            echo -e -n "$CYAN You want to restart your machine?$WHITE($RED Not recommended for Nvidia-Users read README!!!$WHITE)(y/n)"
             read RESTART
             
             if [ $RESTART = y ]
