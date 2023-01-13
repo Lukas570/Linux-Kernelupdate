@@ -234,6 +234,7 @@ cp /boot/config*`uname -r` .config
 echo -e "$CYAN Patching Config-File"
 sleep 2
 sed -i 's/CONFIG_SYSTEM_TRUSTED_KEYS/#CONFIG_SYSTEM_TRUSTED_KEYS/g' .config
+sed -i 's/CONFIG_VIDEO_CX18=m/#CONFIG_VIDEO_CX18=m/g' .config
 echo -e "$GREEN Config-File patched successfully!$WHITE"
 sleep 3
 
