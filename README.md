@@ -5,9 +5,7 @@ Easy to use and foolproof way to update your Linux-Kernel!
 
 Added PGP-Verification process!
 
-You can compile the Kernel now with a custom config-file (Advanced Mode)
 
-If you have an older version of the script without the PGP-verification process it's highly advised to upgrade to the newest version!
 
 # How to use:
 
