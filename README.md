@@ -1,5 +1,5 @@
 # Kernelupdate
-Script to install the latest Kernel from Kernel.org
+Script to install the latest Kernel from Kernel.org 
 
 Easy to use and foolproof way to update your Linux-Kernel!
 
@@ -30,7 +30,7 @@ Check out my Nvidia-Debian script. It downloads and installs the newest Nvidia-D
 
 Fixing the Ubuntu compiling problem.
 
-🟢 Allow users to make custom settings in the Config-File and before the Kernel compilation starts (Advanced Mode)
+
 
 Benchmarking feature
 
