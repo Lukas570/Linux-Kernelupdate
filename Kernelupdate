@@ -44,8 +44,8 @@ function checkdep() {
                     
                 else
            
-                    sudo apt-get update
-                    sudo apt-get install build-essential libncurses5-dev fakeroot xz-utils libelf-dev bison bc libssl-dev flex rsync dwarves wget bzip2 gnupg2 gpgv2 -y
+                    sudo apt update
+                    sudo apt install build-essential libncurses5-dev fakeroot xz-utils libelf-dev bison bc libssl-dev flex rsync dwarves wget bzip2 gnupg2 gpgv2 debhelper -y
             
                     echo -e "$GREEN All packages installed successfully!!!$WHITE"
             fi
